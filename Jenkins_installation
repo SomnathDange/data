@@ -1,0 +1,44 @@
+https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions
+
+Installation
+Add the Jenkins repository to the yum repos, and install Jenkins from here.
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum install jenkins
+Installation of a stable version
+There is also a LTS YUM repository for the LTS Release Line
+
+sudo wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat-stable/jenkins.repo
+sudo rpm --import https://jenkins-ci.org/redhat/jenkins-ci.org.key
+sudo yum install jenkins
+
+Installation of Java
+Jenkins requires Java in order to run, yet certain distros don't include this by default. To install the Open Java Development Kit (OpenJDK) run the following:
+
+sudo yum install java
+Note: If running CentOS, ensure you follow the guide below.
+
+Start/Stop
+sudo service jenkins start/stop/restart
+sudo chkconfig jenkins on
+
+What does this package do?
+Jenkins will be launched as a daemon on startup. See /etc/init.d/jenkins for more details.
+The 'jenkins' user is created to run this service. If you change this to a different user via the config file, you must change the owner of /var/log/jenkins, /var/lib/jenkins, and /var/cache/jenkins.
+Log file will be placed in /var/log/jenkins/jenkins.log. Check this file if you are troubleshooting Jenkins.
+/etc/sysconfig/jenkins will capture configuration parameters for the launch.
+By default, Jenkins listen on port 8080. Access this port with your browser to start configuration.  Note that the built-in firewall may have to be opened to access this port from other computers.  (See http://www.cyberciti.biz/faq/disable-linux-firewall-under-centos-rhel-fedora/ for instructions how to disable the firewall permanently)
+A Jenkins RPM repository is added in /etc/yum.repos.d/jenkins.repo
+Disable the firewall
+firewall-cmd --permanent --new-service=jenkins
+firewall-cmd --permanent --service=jenkins --set-short="Jenkins Service Ports"
+firewall-cmd --permanent --service=jenkins --set-description="Jenkins service firewalld port exceptions"
+firewall-cmd --permanent --service=jenkins --add-port=8080/tcp
+firewall-cmd --permanent --add-service=jenkins
+firewall-cmd --zone=public --add-service=http --permanent
+firewall-cmd --reload
+firewall-cmd --list-all
+
+
+yum install java-1.8.0-openjdk
