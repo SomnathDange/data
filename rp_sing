@@ -1,0 +1,52 @@
+function expect_script
+{
+cat << End-of-text #No white space between << and End-of-text
+spawn rpm --resign $RPMFILE
+expect -exact "Enter pass phrase: "
+send -- "${RPMPWD}\r"
+expect eof
+exit
+End-of-text
+}
+
+function sign_rpm
+{
+echo "Signing RPM..."
+expect_script | /usr/bin/expect -f - 2> /dev/null
+}
+
+## Main execution
+
+. /root/.bash_profile
+
+if [ $# -eq 0 ]
+  then
+    echo "No arguments supplied, Please provide the valid rpm name for rpm signing"
+    exit 1
+fi
+
+RPMFILE="$*"
+if [[ ! -f ${1} ]] ; then
+   echo "Provided rpm file not present"
+   exit 1
+elif [[ -z ${1} ]] ; then
+   echo "rpm file string is empty"
+   exit 1
+elif [[ ${1} != *.rpm ]] ; then
+   echo "Provided rpm File type is not rpm"
+   exit 1
+fi
+
+sign_rpm > /dev/null
+
+set -x 
+for i in $*; do
+ rpm_sign=`rpm -K $i`
+ rpm_sign_status=`echo $rpm_sign | grep -c 'pgp md5 OK'`
+ if [[ $rpm_sign_status -ge 1 ]] ; then
+      echo "rpm:$i is signed successfully !!!"
+ else
+      echo "rpm signing failed exiting !!!"
+      exit 1
+ fi
+done
