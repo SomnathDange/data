@@ -1,5 +1,7 @@
 https://wiki.jenkins.io/display/JENKINS/Installing+Jenkins+on+Red+Hat+distributions
 
+https://pkg.jenkins.io/redhat/
+
 Installation
 Add the Jenkins repository to the yum repos, and install Jenkins from here.
 
