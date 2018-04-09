@@ -1,0 +1,42 @@
+Jenkins issues:
+
+[Pipeline] End of Pipeline
+org.jenkinsci.plugins.scriptsecurity.sandbox.RejectedAccessException: Scripts not permitted to use method hudson.plugins.git.GitSCM getUserRemoteConfigs
+	at org.jenkinsci.plugins.scriptsecurity.sandbox.whitelists.StaticWhitelist.rejectMethod(StaticWhitelist.java:175)
+	at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor$6.reject(SandboxInterceptor.java:261)
+	at org.jenkinsci.plugins.scriptsecurity.sandbox.groovy.SandboxInterceptor.onGetProperty(SandboxInterceptor.java:381)
+	at org.kohsuke.groovy.sandbox.impl.Checker$6.call(Checker.java:284)
+	at org.kohsuke.groovy.sandbox.impl.Checker.checkedGetProperty(Checker.java:288)
+	at com.cloudbees.groovy.cps.sandbox.SandboxInvoker.getProperty(SandboxInvoker.java:29)
+	at com.cloudbees.groovy.cps.impl.PropertyAccessBlock.rawGet(PropertyAccessBlock.java:20)
+	at stepCheckout.call(/var/lib/jenkins/jobs/GSI-EO/jobs/abc/builds/18/libs/stdlib/vars/stepCheckout.groovy:13)
+  
+  SOLUTION:
+  
+  For people that find this later, even though we were not automatically given the methods to approve in the script approval UI, adding these to our scriptApproval.xml file solved the problem:
+
+    <string>method hudson.plugins.git.GitSCM getBranches</string>
+    <string>method hudson.plugins.git.GitSCM getUserRemoteConfigs</string>
+    <string>method hudson.plugins.git.GitSCMBackwardCompatibility getExtensions</string>
+    
+    <?xml version='1.0' encoding='UTF-8'?>
+<scriptApproval plugin="script-security@1.41">
+  <approvedScriptHashes/>
+  <approvedSignatures>
+    <string>method hudson.plugins.git.GitSCM getBranches</string>
+    <string>method hudson.plugins.git.GitSCM getBranches</string>
+    <string>method hudson.plugins.git.GitSCM getUserRemoteConfigs</string>
+    <string>method hudson.plugins.git.GitSCMBackwardCompatibility getExtensions</string>
+  </approvedSignatures>
+  <aclApprovedSignatures/>
+  <approvedClasspathEntries/>
+  <pendingScripts/>
+  <pendingSignatures>
+    <pendingSignature>
+      <context/>
+      <signature>method hudson.plugins.git.GitSCM getUserRemoteConfigs</signature>
+      <dangerous>false</dangerous>
+    </pendingSignature>
+  </pendingSignatures>
+  <pendingClasspathEntries/>
+</scriptApproval>
