@@ -1,0 +1,1 @@
+gem install fpm --no-ri --no-rdoc --version 1.6.3 || gem install fpm --no-ri --no-rdoc --version 1.4.0
