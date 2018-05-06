@@ -50,3 +50,10 @@ for i in $*; do
       exit 1
  fi
 done
+
+
+############
+cat /root/.bash_profile
+PATH=$PATH:$HOME/bin
+export PATH
+export RPMPWD="password"
