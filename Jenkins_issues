@@ -40,3 +40,14 @@ org.jenkinsci.plugins.scriptsecurity.sandbox.RejectedAccessException: Scripts no
   </pendingSignatures>
   <pendingClasspathEntries/>
 </scriptApproval>
+
+
+#################################
+git clone errors:
+stderr: Permission denied (publickey).
+fatal: Could not read from remote repository.
+
+Please make sure you have the correct access rights
+and the repository exists.
+********
+Need to add git@URL => git@ is must in the url for clone
