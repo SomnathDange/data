@@ -1,0 +1,31 @@
+https://docs.docker.com/swarm/install-manual/#step-4-set-up-a-discovery-backend
+Manager:
+Set up a discovery backend:
+	docker run -d -p 8500:8500 --name=consul progrium/consul -server -bootstrap -advertise=SLAVE_IP
+To create the manager in the cluster:
+	docker run -d -p 4000:4000 swarm manage -H :4000 --advertise SLAVE_IP:4000 consul://SLAVE_IP:8500
+Add this host into cluster:
+	docker run -d swarm join --advertise=SLAVE_IP:2375 consul://SLAVE_IP:8500
+Run portainer on Manager:
+docker run -d -p 9000:9000 portainer/portainer -H tcp://SLAVE_IP:4000
+
+File: /lib/systemd/system/docker.service
+	ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock 
+Node1:
+	docker run -d swarm join --advertise=SLAVE_IP:2375 consul://SLAVE_IP:8500
+	File: /lib/systemd/system/docker.service
+	ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+	
+Node2:
+	docker run -d swarm join --advertise=SLAVE_IP:2375 consul://SLAVE_IP:8500
+	File: /lib/systemd/system/docker.service
+	ExecStart=/usr/bin/dockerd -H fd:// -H tcp://0.0.0.0:2375 -H unix:///var/run/docker.sock
+	
+Jenkins:
+	Cloud Name: docker
+	Docker URL: tcp://SLAVE_IP:4000
+	Container Cap: 100
+	Docker Template Instance Capacity: 10
+	
+	
+
