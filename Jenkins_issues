@@ -64,3 +64,7 @@ $ sudo usermod -a -G docker $USERNAME
 su - jenkins => Not able to switch to Jenkins user
 usermod -s /bin/bash jenkins
 *******************
+INstall latest git version on centos:
+rpm -U http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
+yum install -y git
+******************* 
