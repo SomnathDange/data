@@ -61,3 +61,6 @@ $ sudo groupadd docker
 $ sudo chown root:docker /var/run/docker.sock
 $ sudo usermod -a -G docker $USERNAME
 ********************
+su - jenkins => Not able to switch to Jenkins user
+usermod -s /bin/bash jenkins
+*******************
