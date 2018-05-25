@@ -68,3 +68,11 @@ INstall latest git version on centos:
 rpm -U http://opensource.wandisco.com/centos/7/git/x86_64/wandisco-git-release-7-2.noarch.rpm
 yum install -y git
 ******************* 
+ssh-keygen => generate files id_rsa_github.pub and id_rsa_github out of which add public key to the GitHub User and add credentials with 
+that username and private key and use that credential for checkout of source code.
+Add key to credentials:
+Username: Somnath.Dange
+Private Key: (From a file on Jenkins master)
+	/var/lib/jenkins/.ssh/id_rsa_github
+	Description: ()Somnath Dange ( Github Account))
+*******************
