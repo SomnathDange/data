@@ -1,0 +1,123 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<scriptApproval plugin="script-security@1.41">
+  <approvedSignatures>
+    <string>method groovy.json.JsonSlurperClassic parseText java.lang.String</string>
+    <string>method groovy.lang.GroovyObject getProperty java.lang.String</string>
+    <string>method groovy.lang.GroovyObject invokeMethod java.lang.String java.lang.Object</string>
+    <string>method hudson.model.Run getEnvironment</string>
+    <string>method hudson.model.Run getPreviousBuild</string>
+    <string>method hudson.model.Run getResult</string>
+    <string>method hudson.plugins.git.GitSCM getBranches</string>
+    <string>method hudson.plugins.git.GitSCM getUserRemoteConfigs</string>
+    <string>method hudson.plugins.git.GitSCMBackwardCompatibility getExtensions</string>
+    <string>method java.io.File getName</string>
+    <string>method java.lang.Class getName</string>
+    <string>method java.lang.Class getResource java.lang.String</string>
+    <string>method java.lang.Class getResourceAsStream java.lang.String</string>
+    <string>method java.lang.Class getSimpleName</string>
+    <string>method java.net.HttpURLConnection getResponseCode</string>
+    <string>method java.net.HttpURLConnection setRequestMethod java.lang.String</string>
+    <string>method java.net.URL getPath</string>
+    <string>method java.net.URL openConnection</string>
+    <string>method java.net.URLConnection setRequestProperty java.lang.String java.lang.String</string>
+    <string>method java.util.Date getTime</string>
+    <string>method java.util.Map size</string>
+    <string>method org.jenkinsci.plugins.workflow.job.WorkflowRun getChangeSets</string>
+    <string>method org.jenkinsci.plugins.workflow.support.actions.EnvironmentAction$IncludingOverrides getOverriddenEnvironment</string>
+    <string>method org.jenkinsci.plugins.workflow.support.steps.build.RunWrapper getRawBuild</string>
+    <string>method org.jfrog.hudson.pipeline.types.buildInfo.BuildInfo getModules</string>
+    <string>method org.thoughtslive.jenkins.plugins.jira.api.ResponseData getData</string>
+    <string>new com.cwctravel.hudson.plugins.extended_choice_parameter.ExtendedChoiceParameterDefinition java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String java.lang.String boolean boolean int java.lang.String java.lang.String</string>
+    <string>new groovy.json.JsonSlurperClassic</string>
+    <string>new groovy.text.SimpleTemplateEngine</string>
+    <string>new java.io.File java.lang.String</string>
+    <string>new java.lang.String java.lang.String</string>
+    <string>new java.util.Date</string>
+    <string>new java.util.LinkedHashMap</string>
+    <string>new java.util.LinkedHashMap java.util.Map</string>
+    <string>new org.joda.time.DateTime int int int int int</string>
+    <string>new org.joda.time.DateTime int int int int int int int</string>
+    <string>new org.joda.time.DateTime java.lang.Object</string>
+    <string>staticField hudson.model.Result SUCCESS</string>
+    <string>staticMethod com.cloudbees.groovy.cps.CpsDefaultGroovyMethods $callClosureForMapEntry__groovy_lang_Closure__java_util_Map_Entry groovy.lang.Closure java.util.Map$Entry</string>
+    <string>staticMethod java.lang.System getProperty java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods drop java.util.List int</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods get java.util.Map java.lang.Object java.lang.Object</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.lang.String int</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.util.Collection java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods hasProperty java.lang.Object java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods invokeMethod java.lang.Object java.lang.String java.lang.Object</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods plus java.util.List java.lang.Iterable</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods plus java.util.List java.lang.Object</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods plus java.util.List java.util.Collection</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods plus java.util.Map java.util.Collection</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods plus java.util.Map java.util.Map</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods println java.lang.Object java.lang.Object</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods replaceAll java.lang.String java.lang.String groovy.lang.Closure</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods split java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods stripIndent java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods stripMargin java.lang.String</string>
+    <string>staticMethod org.joda.time.DateTime now</string>
+    <string>staticMethod org.joda.time.DateTime parse java.lang.String</string>
+  </approvedSignatures>
+  <aclApprovedSignatures>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.lang.Object java.lang.String</string>
+    <string>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods leftShift java.util.Map java.util.Map</string>
+    <string>staticMethod org.codehaus.groovy.runtime.ScriptBytecodeAdapter isCase java.lang.Object java.lang.Object</string>
+  </aclApprovedSignatures>
+  <approvedClasspathEntries/>
+  <pendingScripts>
+  </pendingScripts>
+  <pendingSignatures>
+    <pendingSignature>
+      <context/>
+      <signature>method groovy.lang.GroovyObject setProperty java.lang.String java.lang.Object</signature>
+      <dangerous>true</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>staticField java.lang.System out</signature>
+      <dangerous>false</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods readLines java.io.File</signature>
+      <dangerous>false</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>new java.util.Properties</signature>
+      <dangerous>false</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>method java.io.File getAbsolutePath</signature>
+      <dangerous>false</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>staticMethod java.lang.System exit int</signature>
+      <dangerous>true</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods withInputStream java.io.File groovy.lang.Closure</signature>
+      <dangerous>false</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>staticMethod org.codehaus.groovy.runtime.DefaultGroovyMethods getAt java.lang.Object java.lang.String</signature>
+      <dangerous>true</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>method jenkins.scm.RunWithSCM getChangeSets</signature>
+      <dangerous>false</dangerous>
+    </pendingSignature>
+    <pendingSignature>
+      <context/>
+      <signature>method hudson.plugins.git.GitSCM isDoGenerateSubmoduleConfigurations</signature>
+      <dangerous>false</dangerous>
+    </pendingSignature>
+  </pendingSignatures>
+  <pendingClasspathEntries/>
