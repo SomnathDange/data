@@ -70,7 +70,17 @@ yum install -y git
 ******************* 
 ssh-keygen => generate files id_rsa_github.pub and id_rsa_github out of which add public key to the GitHub User and add credentials with 
 that username and private key and use that credential for checkout of source code.
-Add key to credentials:
+
+How to add Above Credentials in the Jenknis:
+		a) Go to Credentials page (Global credentials (unrestricted)) inside Jenkins
+		b) Add Credentials
+		c) Select "Kind" => UserName with private Key
+		d) Scope: Global
+		e) username: your_service_user_account
+		f) Private Key: Select "From a file on Jenkins master" and 
+			file value will be :/var/lib/jenkins/.ssh/id_rsa_github 
+		g) Description: Service Account ( Github Account For Checkout)
+	
 Username: Somnath.Dange
 Private Key: (From a file on Jenkins master)
 	/var/lib/jenkins/.ssh/id_rsa_github
