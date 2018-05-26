@@ -74,5 +74,6 @@ Add key to credentials:
 Username: Somnath.Dange
 Private Key: (From a file on Jenkins master)
 	/var/lib/jenkins/.ssh/id_rsa_github
-	Description: ()Somnath Dange ( Github Account))
+	Description: ()Somnath Dange ( Github Account)) (For All Checkout Related Stuff => use this Account)
+	in Job Config, github org config
 *******************
