@@ -106,3 +106,4 @@ Configure Jenkins:
 		API Endpoint: https://company.com/api/v3
 		Name: Company Engg GitHib  
  *******************************
+ For GitHUb Organizations (Tab) needs to use username and password for checkout from credentials.
