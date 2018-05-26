@@ -77,3 +77,22 @@ Private Key: (From a file on Jenkins master)
 	Description: ()Somnath Dange ( Github Account)) (For All Checkout Related Stuff => use this Account)
 	in Job Config, github org config
 *******************
+
+Configure Jenkins:
+	1) GitHub Servers	
+		GitHub Server
+			Name:COMPANY GitHUb
+			API URL: https://company.com/api/v3
+			Credentials: SHARED GitHub API Token (Service Account)
+	    How to add Above Credentials in the Jenknis:
+		a) Go to Credentials page (Global credentials (unrestricted)) inside Jenkins
+		b) Add Credentials
+		c) Select "Kind" => Secret Text
+		d) Scope: Global
+		e) Secret: Paste the personal access token of your service account
+		f) Description: [SHARED GitHub API Token (Service Account)]
+
+	2) GitHub Enterprise Servers
+		API Endpoint: https://company.com/api/v3
+		Name: Company Engg GitHib  
+ *******************************
