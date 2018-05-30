@@ -1,0 +1,55 @@
+<?jelly escape-by-default='true'?>
+<j:jelly xmlns:j="jelly:core" xmlns:st="jelly:stapler" xmlns:d="jelly:define">
+
+<STYLE>
+BODY, TABLE, TD, TH, P {
+  font-family:Verdana,Helvetica,sans serif;
+  font-size:11px;
+  color:black;
+}
+h1 { color:black; }
+h2 { color:black; }
+h3 { color:black; }
+TD.bg1 { color:white; background-color:#0000C0; font-size:120% }
+TD.bg2 { color:white; background-color:#4040FF; font-size:110% }
+TD.bg3 { color:white; background-color:#8080FF; }
+TD.test_passed { color:blue; }
+TD.test_failed { color:red; }
+TD.console { font-family:Courier New; }
+</STYLE>
+<BODY>
+
+<!-- GENERAL INFO -->
+<TABLE border="1" cellpadding="10" cellspacing="0">
+  <TR><TD>Build URL</TD><TD><A href="${rooturl}${build.url}">${rooturl}${build.url}</A></TD></TR>
+  <TR><TD>Project:</TD><TD>${project.name}</TD></TR>
+  <TR><TD>Date of build:</TD><TD>${it.timestampString}</TD></TR>
+  <TR><TD>Build duration:</TD><TD>${build.durationString}</TD></TR>
+</TABLE>
+<BR/><BR/>
+
+<!-- CHANGE SET -->
+<j:set var="changeSet" value="${build.changeSet}" />
+<j:if test="${changeSet!=null}">
+  <j:set var="hadChanges" value="false" />
+ <caption><font color="blue"><B><I>CHANGES: </I></B></font></caption>
+  <TABLE border="1" cellpadding="10" cellspacing="0">
+    <TR><TH><font color="magenta"><B>COMMITTER</B></font></TH><TH><font color="magenta"><B>DESCRIPTION</B></font></TH><TH><font color="magenta"><B>COMMIT_ID</B></font></TH></TR>
+    <j:forEach var="cs" items="${changeSet}" varStatus="loop">
+      <j:set var="hadChanges" value="true" />
+      <j:set var="aUser" value="${cs.hudsonUser}"/>
+      <TR>
+          <TD align="left"><B>${aUser!=null?aUser.displayName:cs.author.displayName}</B></TD>
+	  <TD align="left"><B><j:out value="${cs.msgAnnotated}"/></B></TD>
+          <TD align="left"><B>${cs.commitId?:cs.revision?:cs.changeNumber}</B></TD>
+      </TR>
+    </j:forEach>
+    <j:if test="${!hadChanges}">
+      <TR><TD colspan="3"><font color="magenta"><B>No Changes</B></font></TD></TR>
+    </j:if>
+  </TABLE>
+<BR/>
+</j:if>
+
+</BODY>
+</j:jelly>
