@@ -1,0 +1,21 @@
+import groovy.json.JsonBuilder
+
+def STASH_URL = 'https://stash_url/rest'
+def state = 'FAILED'
+def json = new JsonBuilder()
+def command
+def proc
+
+if(manager.build.result.isBetterOrEqualTo(hudson.model.Result.SUCCESS)) {
+    state = 'SUCCESSFUL'
+}
+def buildVariables = manager.build.getEnvironment(manager.listener)
+
+json state: state, key: buildVariables['JOB_NAME'], description: manager.build.result.toString(), url: buildVariables['BUILD_URL'],name: "${buildVariables['JOB_NAME']}#${buildVariables['BUILD_NUMBER']}"
+
+command = ['curl', '-D', '-', '-X', 'POST', '-u', 'jenkins_user:jenkins_password',
+        '-H', 'Content-Type:application/json', '-d', json.toString(),
+        '-k', '-n', "${STASH_URL}/build-status/1.0/commits/${buildVariables['GIT_COMMIT']}"]
+
+manager.listener.logger.println command
+manager.listener.logger.println command.execute().text
