@@ -1,5 +1,7 @@
 #https://github.com/projectatomic/dockerfile_lint/blob/master/sample_rules/basic_rules.yaml
 
+#https://www.fromlatest.io/#/ => Live Docker linter
+
 ---
   profile:
     name: "Default"
