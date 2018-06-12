@@ -1,3 +1,9 @@
+
+ERROR:  Error installing fpm:
+	ffi requires Ruby version >= 1.9.
+  
+  => Solution
+
 gem install fpm --no-ri --no-rdoc --version 1.6.3 || gem install fpm --no-ri --no-rdoc --version 1.4.0
 
 gem install --no-ri --no-rdoc cabin --version 0.7.2
