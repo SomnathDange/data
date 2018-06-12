@@ -8,4 +8,4 @@ gem install fpm --no-ri --no-rdoc --version 1.6.3 || gem install fpm --no-ri --n
 
 gem install --no-ri --no-rdoc cabin --version 0.7.2
 gem install --no-ri --no-rdoc fpm
-
+gem install fpm -v 1.4.0
