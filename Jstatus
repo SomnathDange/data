@@ -1,0 +1,99 @@
+#!/usr/bin/python
+
+import requests
+import json
+import sys
+
+stats = {}
+offline = []
+lowdisk = {}
+lowtemp = {}
+lowswap = {}
+lowmem = {}
+nodes = []
+diskThreshold = 1000000000 #1GB
+tempThreshold = 1000000000 #1GB
+swapThreshold = 100000000 #100MB
+ramThreshold = 10000000   #100MB
+
+try:
+    r = requests.get("http://localhost:8080/computer/api/json?pretty=true")
+except requests.exceptions.RequestException as e:
+    print e
+    sys.exit(2)
+
+print r
+rjson = r.json()
+
+
+
+class jenkinsNode(object):
+    def __init__(self, name, offline, diskspace, memory, swapspace, tempspace):
+        self.name = name
+        self.status = 'ONLINE' if offline is False else 'OFFLINE'
+        self.diskspace = diskspace
+        self.memory = memory
+        self.swapspace = swapspace
+        self.tempspace = tempspace
+
+for m in rjson['computer']:
+    if m['offline'] is not True:
+        nodes.append(jenkinsNode(\
+                            m['displayName'], \
+                            m['offline'], \
+                            m['monitorData']['hudson.node_monitors.DiskSpaceMonitor']['size'], \
+                            m['monitorData']['hudson.node_monitors.SwapSpaceMonitor']['availablePhysicalMemory'], \
+                            m['monitorData']['hudson.node_monitors.SwapSpaceMonitor']['availableSwapSpace'], \
+                            m['monitorData']['hudson.node_monitors.TemporarySpaceMonitor']['size']))
+    else:
+                offline.append(m['displayName'])
+
+for n in nodes:
+    stats[n.name] = [ n.status, n.diskspace, n.memory, n.swapspace, n.tempspace ]
+
+for n in stats:
+    #if stats[n][0] == 'OFFLINE':
+        #offline[n] = stats[n]
+    if stats[n][1] <= diskThreshold:
+        lowdisk[n] = stats[n]
+    if stats[n][4] <= tempThreshold:
+        lowtemp[n] = stats[n]
+    if stats[n][3] <= swapThreshold:
+        lowswap[n] = stats[n]
+    if stats[n][2] <= ramThreshold:
+        lowmem[n] = stats[n]
+
+
+if not offline and not lowdisk and not lowtemp and not lowswap and not lowmem:
+    print "OK: %s online slaves" % len(stats)
+    status = 0
+else:
+    print "CRITICAL: Jenkins nodes listed below have issues\n"
+    status = 2
+
+if lowswap:
+    print "Following slaves have swap space less than %sB\n" % swapThreshold
+    print lowswap.keys()
+    status = 0
+
+if lowtemp:
+    print "Following slaves have temp space less than %sB\n" % tempThreshold
+    print lowtemp.keys()
+    status = 1
+
+if lowmem:
+    print "Following slaves have RAM less than %sB\n" % ramThreshold
+    print lowmem.keys()
+    status = 2
+
+if offline:
+    print "Following slaves are offline:\n"
+    print offline
+    status = 2
+
+if lowdisk:
+    print "Following slaves have disk space less than %sB\n" % diskThreshold
+    print lowdisk.keys()
+    status = 2
+
+sys.exit(status)
