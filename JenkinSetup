@@ -1,1 +1,8 @@
 
+1) yum install jenkins
+2) http://10.10.01.01:8080/descriptorByName/hudson.tools.JDKInstaller/enterCredential [Oracle username and password for downloading JDK and JAVA]
+	email: 4gbvwry5.m5y@20mm.eu password:Test@123 
+3) Add node: with username and password: and workspace is: /var/jenkins_area having 777 permissions
+
+
+
